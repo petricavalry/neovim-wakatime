@@ -6,7 +6,7 @@ local function process_cli_args(key, value)
     end
     if key == "is_write" then
         if value == false then
-            return
+            return {}
         end
         return { "--write" }
     end
@@ -28,12 +28,17 @@ local function send_heartbeats(is_write)
     }
 
     local command = { "wakatime" }
-    for key, value in ipairs(heartbeats) do
-        for item in ipairs(process_cli_args(key, value)) do
-            command.insert(item)
+    for key, value in pairs(heartbeats) do
+        for _, item in ipairs(process_cli_args(key, value)) do
+            table.insert(command, item)
         end
     end
-    vim.system(command)
+    vim.system(command, function(obj)
+        if obj.code ~= 0 then
+            print(obj.stdout)
+            print(obj.stderr)
+        end
+    end)
 end
 
 vim.api.nvim_create_autocmd("BufEnter", {
