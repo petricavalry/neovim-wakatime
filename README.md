@@ -18,5 +18,6 @@ Change `~/.wakatime.cfg`.
 ```lua
 {
     "petricavalry/attentiveacting",
+    config = true,
 }
 ```
