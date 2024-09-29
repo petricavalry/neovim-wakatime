@@ -1,4 +1,4 @@
-# AttentiveActing
+# neovim-wakatime
 
 A Wakatime plugin for Neovim write in Lua.
 
@@ -7,17 +7,13 @@ A Wakatime plugin for Neovim write in Lua.
 Install
 [wakatime-cli](https://github.com/wakatime/wakatime-cli).
 
-```bash
-pacman -Syu wakatime
-```
-
 Change `~/.wakatime.cfg`.
 
 ## Installation
 
 ```lua
 {
-    "petricavalry/attentiveacting",
+    "petricavalry/neovim-wakatime",
     config = true,
 }
 ```

@@ -1,7 +1,7 @@
 local last_sent_time
 
 local version = vim.version()
-local user_agent = string.format("Neovim/%d.%d.%d AttentiveActing/0.1.0", version.major, version.minor, version.patch)
+local user_agent = string.format("neovim/%d.%d.%d neovim-wakatime/0.1.0", version.major, version.minor, version.patch)
 
 local function process_cli_args(key, value)
     if key == "lines" then
@@ -40,7 +40,7 @@ local function send_heartbeats(is_write)
     table.insert(command, user_agent)
     vim.system(command, vim.schedule_wrap(function(obj)
         if obj.code ~= 0 then            
-            vim.notify(string.format("failed to upload heartbeats to Wakatime server: %s", obj.stderr), vim.log.levels.ERROR)
+            vim.notify(string.format("failed to upload heartbeats: %s", obj.stderr), vim.log.levels.ERROR)
         end
     end))
 end
